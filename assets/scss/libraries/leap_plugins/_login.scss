@@ -1,0 +1,38 @@
+#login-modal{
+  .mfp-close{
+    z-index: 10;
+    position: absolute;
+    right: 20px;
+    top:-25px;
+  }
+  .wrap{
+    text-align: center;
+  }
+  .logo{
+    width: 300px;
+  }
+  form{
+    @include rem(margin-top, $horz-spacing-unit);
+    p{
+      margin-bottom: 15px;
+    }
+    label{
+      display: none;
+    }
+    .lt-ie9 &{
+      label{
+        display: block !important;
+      }
+    }
+    input[type=text],
+    input[type=password]{
+      border: 1px solid #CCC;
+      padding: 5px 10px;
+      font-size: 18px;
+      width: 80%;
+      @include inline-block;
+      margin: 0;
+      background-color: #FFF;
+    }
+  }
+}

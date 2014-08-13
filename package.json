@@ -1,5 +1,5 @@
 {
-  "name": "roots",
+  "name": "leap",
   "version": "7.0.0",
   "author": "Ben Word <ben@benword.com>",
   "homepage": "http://roots.io",
@@ -34,6 +34,9 @@
     "grunt-modernizr": "~0.5.2",
     "grunt-wp-assets": "~0.2.6",
     "load-grunt-tasks": "~0.6.0",
-    "time-grunt": "~0.3.2"
+    "time-grunt": "~0.3.2",
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-cssmin" : "*",
+    "grunt-concurrent" : "*"
   }
 }

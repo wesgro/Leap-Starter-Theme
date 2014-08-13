@@ -6,59 +6,63 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
   var jsFileList = [
-    'assets/vendor/bootstrap/js/transition.js',
-    'assets/vendor/bootstrap/js/alert.js',
-    'assets/vendor/bootstrap/js/button.js',
-    'assets/vendor/bootstrap/js/carousel.js',
-    'assets/vendor/bootstrap/js/collapse.js',
-    'assets/vendor/bootstrap/js/dropdown.js',
-    'assets/vendor/bootstrap/js/modal.js',
-    'assets/vendor/bootstrap/js/tooltip.js',
-    'assets/vendor/bootstrap/js/popover.js',
-    'assets/vendor/bootstrap/js/scrollspy.js',
-    'assets/vendor/bootstrap/js/tab.js',
-    'assets/vendor/bootstrap/js/affix.js',
     'assets/js/plugins/*.js',
     'assets/js/_*.js'
   ];
 
   grunt.initConfig({
+    concurrent: {
+        dev: ['compass:dev', 'watch'],
+        options: {
+            logConcurrentOutput: true
+        },
+    },
     jshint: {
       options: {
         jshintrc: '.jshintrc'
       },
       all: [
+        '!.sass-cache/**/*',
         'Gruntfile.js',
         'assets/js/*.js',
         '!assets/js/scripts.js',
         '!assets/**/*.min.*'
       ]
     },
-    less: {
+    compass: {
+      options: {
+        config: 'config.rb',
+        bundleExec: true,
+        force: true,
+      },
       dev: {
-        files: {
-          'assets/css/main.css': [
-            'assets/less/main.less'
-          ]
-        },
         options: {
-          compress: false,
-          // LESS source map
-          // To enable, set sourceMap to true and update sourceMapRootpath based on your install
-          sourceMap: true,
-          sourceMapFilename: 'assets/css/main.css.map',
-          sourceMapRootpath: '/app/themes/roots/'
+          watch: true,
+          environment: 'development',
         }
       },
       build: {
-        files: {
-          'assets/css/main.min.css': [
-            'assets/less/main.less'
-          ]
-        },
         options: {
-          compress: true
+          environment: 'production'
         }
+      },
+      ie:{
+        options:{
+          config: 'config.rb',
+          bundleExec: true,
+          force: true,
+          environment: 'production',
+          sassDir:'assets/ie-scss'
+        }
+      }
+    },
+    cssmin: {
+      minify: {
+        expand: true,
+        cwd: 'assets/css/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'assets/css/',
+        ext: '.min.css'
       }
     },
     concat: {
@@ -75,22 +79,6 @@ module.exports = function(grunt) {
         files: {
           'assets/js/scripts.min.js': [jsFileList]
         }
-      }
-    },
-    autoprefixer: {
-      options: {
-        browsers: ['last 2 versions', 'ie 8', 'ie 9', 'android 2.3', 'android 4', 'opera 12']
-      },
-      dev: {
-        options: {
-          map: {
-            prev: 'assets/css/'
-          }
-        },
-        src: 'assets/css/main.css'
-      },
-      build: {
-        src: 'assets/css/main.min.css'
       }
     },
     modernizr: {
@@ -124,13 +112,6 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      less: {
-        files: [
-          'assets/less/*.less',
-          'assets/less/**/*.less'
-        ],
-        tasks: ['less:dev', 'autoprefixer:dev']
-      },
       js: {
         files: [
           jsFileList,
@@ -142,7 +123,7 @@ module.exports = function(grunt) {
         // Browser live reloading
         // https://github.com/gruntjs/grunt-contrib-watch#live-reloading
         options: {
-          livereload: false
+          livereload: true
         },
         files: [
           'assets/css/main.css',
@@ -156,20 +137,18 @@ module.exports = function(grunt) {
 
   // Register tasks
   grunt.registerTask('default', [
-    'dev'
-  ]);
-  grunt.registerTask('dev', [
-    'jshint',
-    'less:dev',
-    'autoprefixer:dev',
-    'concat'
+    'c'
   ]);
   grunt.registerTask('build', [
     'jshint',
-    'less:build',
-    'autoprefixer:build',
+    'compass:build',
+    'compass:ie',
+    'cssmin',
     'uglify',
     'modernizr',
     'version'
+  ]);
+  grunt.registerTask('c', [
+    'concurrent:dev'
   ]);
 };

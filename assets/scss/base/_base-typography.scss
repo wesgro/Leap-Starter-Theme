@@ -1,0 +1,130 @@
+/**
+ * $FONT-FACE
+ */
+
+
+/**
+ * $BASE-TYPOGRAPHY
+ */
+html {
+  font-family: $bodyFont;
+  color: $bodyCopy;
+  /* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.5;
+	font-weight: $bodyFontWeight;
+  @include breakpoint($mobile){
+    font-size: 14px;
+	}
+	@include breakpoint($tab){
+  	font-size: 15px;
+	}
+	@include breakpoint($desk){
+	  font-size: $base-font-size;
+	}
+	&.lt-ie9{
+  	font-size: $base-font-size;
+	}
+}
+
+/**
+ * $LINKS
+ */
+a{
+  color: #000;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+/**
+ * $HEADINGS
+ */
+h1, .alpha,
+h2, .beta,
+h3, .gamma,
+h4, .delta,
+h5, .epsilon,
+h6, .zeta {
+  font-family: $headerFont;
+  font-weight: $headerFontWeight;
+}
+
+h1, .alpha {
+
+  line-height: 1;
+  @include rem(font-size, 72px);
+  
+}
+h2, .beta {
+  @include font-size(28px);
+  line-height: 1.2;
+
+}
+h3, .gamma {
+  @include font-size(24px);
+  line-height: 1.1;
+}
+h4, .delta {
+  @include font-size(18px);
+}
+h5, .epsilon{
+  @include font-size(16px);
+}
+h6, .zeta {
+  @include font-size(16px);
+}
+hr{
+  border: 0;
+  height: 1px;
+  margin: 25px 0;
+}
+/**
+ * $PARAGRAPHS
+ */
+p,
+%p {
+  margin: 0;
+  -ms-word-break: normal;
+  -ms-word-wrap: normal;
+  word-break: normal;
+  -webkit-font-feature-settings: "liga", "dlig";
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga", "dlig";
+  -o-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig"; 
+}
+strong{
+  font-weight: 700;
+}
+pre{
+  font-size: 11px;
+}
+/**
+ * $QUOTES
+ */
+blockquote {
+  @extend %p;
+  padding: 0 1.5em;
+}
+
+q {
+  font-style: italic;
+}
+
+/**
+ * $MARKS
+ */
+mark,
+.marker {
+  padding: 0.1em 0.5em;
+
+  background: $darkGreen;
+
+  color: #fff;
+  @include font-size(12px);
+  text-transform: capitalize;
+
+  @include border-radius(10px);
+}

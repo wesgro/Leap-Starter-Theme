@@ -1,0 +1,59 @@
+@mixin standardMenu(){
+  .l-region--branding{
+    @include from(pt){
+      @include grid-span(2, 1);
+    }
+    @include from(lt, $noquery){
+      @include grid-span(2, 1);
+    }
+  }
+  .l-region--meta{
+    
+    @include from(pt){
+      @include grid-span(3, 4);
+    }
+    @include from(d, $noquery){
+      @include grid-span(4, 7);
+    }
+  }
+}
+ /**
+  * "Modern" menu type
+  */
+@mixin modernMenu(){
+  @include standardMenu();
+  .l-region--navigation,
+  .l-region--search{
+    display: none;
+  }
+}
+/**
+* "Standard" menu type
+*/
+@mixin classicMenu(){
+  @include standardMenu();
+  .l-region--header{
+    @include from(lt, $noquery){
+      .l-region--meta{
+        display: none;
+      }
+    }
+    @include to(pt, $noquery){
+      .l-region--navigation,
+      .l-region--search{
+        display: none;
+      }
+    }
+  }
+  .l-region--navigation{
+    @include from(lt, $noquery){
+      @include grid-span(3, 3);
+    }
+  }
+  .l-region--search{
+    @include from(lt, $noquery){
+      @include grid-span(1, 6);
+    }
+  }
+  
+}

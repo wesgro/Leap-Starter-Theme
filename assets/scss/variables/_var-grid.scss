@@ -1,0 +1,49 @@
+@import "var-typography";
+// Set consistent vertical and horizontal spacing units.
+$vert-spacing-unit: 85px;
+$horz-spacing-unit: 1rem;
+
+$vert-typographic-spacing:45px;
+
+$noquery: '.lt-ie9';
+
+$grid-padding: 2rem;
+$slicer-anti-overlap-corrections: -1px;
+
+$slicer-breakpoints: 0        480px       768px       960px       1024px      1200px;
+
+//                   └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────
+// Slice numbers:         1           2           3           4           5           6
+$slicer-breakpoint-names:'pp'        'lp'        'pt'        'lt'        'd'         'ld';
+
+$mobile: 0px 767px !default;
+$tab: 768px !default;
+$desk: 1200px !default;
+$tabToDesk: 768px 1200px !default;
+
+$mobile: lbp(1) bp(2);
+$tab: bp(3);
+$wideTab: bp(5);
+$desk: bp(5);
+$tabToDesk: bp(3) bp(5);
+$wideDesk:bp(6);
+
+@include add-grid(4);
+@include add-gutter(0);
+
+@include add-grid(6         at bp(3));
+@include add-gutter(0     at bp(3));
+
+@include add-grid(6         at bp(4));
+@include add-gutter(0     at bp(4));
+
+@include add-grid(10        at bp(5));
+@include add-gutter(0     at bp(5));
+
+@include add-grid(10        at bp(6));
+@include add-gutter(0     at bp(6));
+
+
+/**
+* layout vars
+*/

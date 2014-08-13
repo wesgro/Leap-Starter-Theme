@@ -1,0 +1,117 @@
+.searchform{
+	position: relative;
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+	input[type='search']{
+		height:166px;
+  }
+}
+.search-feature{
+		position: fixed;
+		width: 100%;
+		height: 212px; 
+		background: #fff;
+		background: rgba(255,255,255,.8);
+		z-index: 300;
+		top:0px;
+		left:200%;
+		right:0px;
+		padding: 22.5px 2%;
+		form{
+			position: relative;
+		}
+	}
+.search-feature{
+	input{
+		@include box-shadow(none);
+	  	display: inline-block;
+	  	margin: 0;
+	}
+	input[type="search"]{ 
+    @include appearance(none);
+    @include box-sizing(border-box);
+    font-size: 72px;
+    width: 100%;
+    border: 1px solid #000;
+    @include to(pt){
+      font-size: 39px;
+    }
+	}
+	button{
+		@include box-shadow(none);
+		border: none;
+		margin: 0; 
+    display: inline-block;
+    padding: 18.5px 22px;	
+		float: right;
+		position: absolute;
+		right: 0px;	
+    height:83px;
+  	i{
+	  	font-size: 46px;
+	  	color: #FFF;
+  	}
+    @include to(pt){
+      padding: 8px;
+      height:45px;
+      i{
+        font-size: 26px;
+      }
+    }
+	}
+	button[type="submit"]{ 
+		background: #000;
+		top:83.5px;
+		@include to(pt){
+		  top:45.5px;
+		}
+	}
+	button[type="button"]{
+		background: #666;
+		top:0px;
+	}
+
+}
+.page-content .searchform{
+	width: 100%;
+	button[type="button"]{
+		display: none;
+	}
+	button[type="submit"]{ 
+	  	vertical-align: bottom;
+	  	padding: 60px 6%; 
+	  	top:0px;
+	}
+
+
+}
+.button.secondary.small{
+	display: none;
+} 
+.search-results{
+	color: #000;
+}
+.autocomplete-suggestions{
+  background-color: #FFF;
+  @include rem(padding-top, 5px);
+  @include rem(padding-bottom, 5px);
+  @include border-radius(0 0 5px 5px);
+  .autocomplete-suggestion{
+    @include rem(padding-right, 15px);
+    @include rem(padding-left, 15px);
+    @include rem(padding-top, 10px);
+    @include rem(padding-bottom, 10px);
+    border-bottom: 1px solid $lightGrey;
+    cursor: pointer;
+    @include transition(all .3s linear);
+    &:hover{
+      background-color: #000;
+      color: #FFF;
+    }
+    &:last-child{
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}

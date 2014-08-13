@@ -1,0 +1,61 @@
+
+@include sgs-change(debug, true);
+.cf{
+  @include clearfix;
+}
+html{
+  overflow-x: visible;
+  @include from(lt){
+     overflow-x: hidden;
+  }
+}
+/*
+$slicer-breakpoints: 0        480px       768px       960px       1024px      1100px;
+
+//                   └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────
+// Slice numbers:         1           2           3           4           5           6
+$slicer-breakpoint-names:'pp'        'lp'        'pt'        'lt'        'd'         'ld';
+*/
+%l-constrained {
+  margin-left: auto;
+  margin-right: auto;
+  //@include background-grid();
+  min-width: 320px;
+  @include to(pp){
+    max-width:rbp(pp);
+  }
+  @include from(lp){
+     max-width:lbp(lp);
+  }
+  @include from(pt){
+     max-width:bp(3);
+  }
+  @include from(lt){
+     max-width:lbp(lt);
+  }
+  @include from(d, $noquery){
+     max-width:lbp(d);
+  }
+  @include from(ld){
+     max-width:lbp(ld);
+  }
+
+}
+.wrap{
+  @extend %l-constrained;
+  @extend %add-padding;
+}
+.l-region--header{
+  .wrap{
+    position: relative;
+  }
+}
+
+/**
+* Comment out depending on the menu type for the project
+*/
+//"Modern" menu type
+@include modernMenu();
+
+//"Standard" menu type
+//@include classicMenu();

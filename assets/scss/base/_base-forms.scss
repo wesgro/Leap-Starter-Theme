@@ -1,0 +1,138 @@
+::-webkit-input-placeholder {
+   color: #000;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #000; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #000; 
+}
+
+:-ms-input-placeholder {  
+    color: #000;  
+}
+.gform_validation_container{
+  display: none; 
+}
+input[type=file]{
+  @include appearance(none);
+  @include rem(padding, 8px, 0px);
+  @include inline-block;
+  font-weight: 700;
+  font-family: $headerFont;
+  //border: 1px solid #000;
+  @include rem(font-size, 18px);
+}
+input[type=submit]{
+  @include appearance(none);
+  background-color: #FFF;
+  color: #000;
+  @include rem(padding, 10px, 25px);
+  text-align: center;
+  text-transform: uppercase;
+  border: 0;
+  @include inline-block;
+  font-weight: 700;
+  font-family: $headerFont;
+  border: 1px solid #000;
+  @include rem(font-size, 18px);
+  &:hover{
+    
+  } 
+}
+
+.gform_wrapper{
+  .gsection{
+    margin-top: 20px;
+    border-bottom: 0;
+    h2{
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+  }
+  .gfield_label{
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+  .validation_message
+  ,.validation_error{
+    font-size: 12px;
+    color: red;
+  }
+  form{
+    
+    ul{
+      padding: 0;
+      margin: 0;
+    }
+    li{
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+    } 
+    input[type=tel],
+    input[type=text],
+    input[type=email],
+    textarea{
+      @include appearance(none);
+      border: 1px solid #000;
+      @include border-radius(0px);
+      background-color: transparent;
+      @include rem(padding, 10px, 15px);
+      margin-top: 10px;
+      width: 100%;
+      height: 57px;
+      vertical-align: middle;
+      color: #000;
+      font-family: $headerFont;
+      font-weight: 300;
+      font-size: 20px;
+      resize: none;
+      @include rem(font-size, 18px);
+      text-transform: uppercase;
+    }
+    .ginput_card_security_code{
+      margin-top: 10px !important;
+    }
+    textarea{
+      height:50px;
+    }
+    select {
+      @include appearance(none);
+      background: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==") no-repeat calc(100% - 10px) center #FFF;
+      
+      margin: 0;
+      outline: medium none;
+      overflow: hidden;
+      padding: 0 0 0 20px;
+      text-indent: 0.01px;
+      text-overflow: "";
+      z-index: 1;
+      border: 1px solid #000;
+      border-radius: 0;
+      font-size: 0.875rem;
+      padding: 16px 7px !important;
+      margin-top: 10px;
+      @include border-radius(0px);
+      font-size: 13px;
+      width: 100%;
+      
+    &:hover{
+      background-color: #FFF;
+    }
+    option{
+      text-align: left;
+    }
+  }
+    .gform_footer{
+      @include rem(margin-top, 25px);
+    }
+    #field_1_1{
+      input{
+        margin-top: 0;
+      }
+    }
+  }
+}

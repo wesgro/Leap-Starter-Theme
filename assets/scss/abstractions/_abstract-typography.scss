@@ -1,0 +1,91 @@
+// Use REMs with a pixel fa8ontheparkack for font sizing.
+@mixin font-size($font-size){
+  font-size: $font-size;
+  font-size: ($font-size / $base-font-size)*1rem;
+}
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@mixin rem($property, $values...) {
+  $max: length($values);
+  $pxValues: '';
+  $remValues: '';
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value}px;
+
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  } 
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $convert : ($value / strip-unit($base-font-size));
+    $remValues: #{$remValues + $convert}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  } 
+  
+  #{$property}: $pxValues; 
+  #{$property}: $remValues; 
+}
+
+
+@mixin button{
+  @include inline-block;
+  color: #000;
+  text-transform: uppercase;
+  font-family: $headerFont;
+  border: none;
+  @include border-radius(5px);
+  padding: 31px 44px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  &:hover{
+    color: #000;
+    background-color: #FFF;
+  }
+  @include breakpoint($mobile){
+    padding: 10px 21px 14px;
+    font-size: 14px;
+    
+  }
+}
+.button{
+  @include button;
+}
+.button.rev{
+  border-color: #000;
+  color: #000;
+}
+
+.float-list{
+  white-space: nowrap;
+  margin-top: $vert-spacing-unit - 10px;
+  padding: 0;
+  li{
+    list-style-type: none;
+    margin-bottom: 15px;
+  }
+  @include breakpoint($tab, $noquery){
+    li{
+      @include inline-block;
+      margin-right: 20px;
+      margin-bottom: 0;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+  @include breakpoint($desk, $noquery){
+    li{
+      @include rem(margin-right, 86px);
+    }
+  }
+}

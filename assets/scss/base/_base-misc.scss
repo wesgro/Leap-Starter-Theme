@@ -1,0 +1,11 @@
+html,body{
+  min-width: 100%;
+}
+body{
+  @include content-fade-in(.4s);
+  background-color: #FFF;
+}
+.l-page{
+  z-index: 1;
+  position: relative;
+}

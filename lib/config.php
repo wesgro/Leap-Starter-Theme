@@ -11,18 +11,19 @@ add_theme_support('jquery-cdn');            // Enable to load jQuery from the Go
 /**
  * Configuration values
  */
-define('GOOGLE_ANALYTICS_ID', ''); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
-
+define('GOOGLE_ANALYTICS_ID', ""); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
+define('TYPEKIT_ID', ""); // add in the typekit id here
+define('GOOGLE_FONTS', "['Lato:400,700:latin']"); // add in google fonts here as a javascript array
 /**
  * .main classes
  */
 function roots_main_class() {
   if (roots_display_sidebar()) {
     // Classes on pages with the sidebar
-    $class = 'col-sm-8';
+    $class = 'sidebar';
   } else {
     // Classes on full width pages
-    $class = 'col-sm-12';
+    $class = 'no-sidebar';
   }
 
   return apply_filters('roots/main_class', $class);
@@ -32,7 +33,7 @@ function roots_main_class() {
  * .sidebar classes
  */
 function roots_sidebar_class() {
-  return apply_filters('roots/sidebar_class', 'col-sm-4');
+  return apply_filters('roots/sidebar_class', 'sidebar');
 }
 
 /**
@@ -75,4 +76,4 @@ function roots_display_sidebar() {
  * Example: If the content area is 640px wide, set $content_width = 620; so images and videos will not overflow.
  * Default: 1140px is the default Bootstrap container width.
  */
-if (!isset($content_width)) { $content_width = 1140; }
+if (!isset($content_width)) { $content_width = 1400; }

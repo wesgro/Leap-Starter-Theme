@@ -1,0 +1,33 @@
+@import "variables";
+@mixin standard-copy(){
+  .page-title{
+    @include rem(font-size, 27px);
+  }
+  p{
+    @include rem(margin, ($typographic-standard-margin / 2 ),0);
+  }
+  h1,h2,h3,h4,h5,h6{
+    @include rem(margin, ($typographic-standard-margin / 1.5),0,0,0);
+  }
+  h1{
+    @include rem(font-size, $typographic-standard-h1);
+  }
+  h2{
+    @include rem(font-size, ($typographic-standard-h1 / 1.3));
+  }
+  h3{
+    @include rem(font-size, ($typographic-standard-h1 / 1.6));
+  }
+  h4{
+    @include rem(font-size, ($typographic-standard-h1 / 1.8));
+  }
+  h5{
+    @include rem(font-size, ($typographic-standard-h1 / 2.1));
+  }
+  blockquote{
+    @include rem(border-left-width, 10px);
+    border-left-color: #CCC;
+    border-left-style: solid;
+    font-style: italic;
+  }
+}

@@ -22,13 +22,24 @@ var Roots = {
   // All pages
   common: {
     init: function() {
-      // JavaScript to be fired on all pages
+      FastClick.attach(document.body);
     }
   },
   // Home page
   home: {
     init: function() {
       // JavaScript to be fired on the home page
+      var slider = $('#main-slider');
+      //mainSlider.trigger('destroy.owl.carousel');
+      slider.owlCarousel({
+        items:1,
+        margin:0,
+        stagePadding:0,
+        loop:true,
+        //autoplay: true,
+        responsiveRefreshRate:50,
+        autoplayHoverPause: true,
+      });
     }
   },
   // About us page, note the change from about-us to about_us.

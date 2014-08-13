@@ -15,6 +15,8 @@
  * - You're not logged in as an administrator
  */
 function roots_scripts() {
+  global $wp_styles; // call global $wp_styles variable to add conditional wrapper around ie stylesheet the WordPress way
+
   /**
    * The build task in Grunt renames production assets with a hash
    * Read the asset names from assets-manifest.json
@@ -26,6 +28,11 @@ function roots_scripts() {
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js'
     );
+    /**
+    * Register IE only style sheets
+    */
+    wp_register_style( 'leap-ie-only', get_stylesheet_directory_uri() . '/assets/css/main.no-query.css', array(), '' );
+
   } else {
     $get_assets = file_get_contents(get_template_directory() . '/assets/manifest.json');
     $assets     = json_decode($get_assets, true);
@@ -35,10 +42,18 @@ function roots_scripts() {
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
     );
+    /**
+    * Register IE only style sheets
+    */
+    wp_register_style( 'leap-ie-only', get_stylesheet_directory_uri() . '/assets/css/main.no-query.min.css', array(), '' );
   }
 
   wp_enqueue_style('roots_css', get_template_directory_uri() . $assets['css'], false, null);
-
+  
+  //ie stylesheets
+  wp_enqueue_style( 'leap-ie-only' );
+  $wp_styles->add_data( 'leap-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
+  
   /**
    * jQuery is loaded using the same method from HTML5 Boilerplate:
    * Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
@@ -55,11 +70,38 @@ function roots_scripts() {
   }
 
   wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, false);
+  wp_enqueue_script('webfont-loader', '//ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js', array(), null, false);
   wp_enqueue_script('jquery');
   wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
+  
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 
+function leap_add_webfont(){
+  if(TYPEKIT_ID){
+    $typekit = "typekit: { id: '".TYPEKIT_ID."' },";
+  }
+  if(GOOGLE_FONTS){
+    $google = "google: {families: ".GOOGLE_FONTS."},";
+  }
+  echo "<script>
+  WebFontConfig = {
+    {$typekit}
+    {$google}
+  };
+
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+              '://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+</script>";
+}
+add_action('wp_head', 'leap_add_webfont');
 // http://wordpress.stackexchange.com/a/12450
 function roots_jquery_local_fallback($src, $handle = null) {
   static $add_jquery_fallback = false;

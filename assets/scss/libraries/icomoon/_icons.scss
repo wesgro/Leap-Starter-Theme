@@ -1,0 +1,19 @@
+$icon-twitter: "\e601";
+
+$icon-facebook: "\e600";
+
+$icon-menu : "\e602";
+$icon-search: "\e608";
+
+.icon-search:before {
+	content: "\e608";
+}
+.icon-menu:before {
+	content: "\e602";
+}
+.icon-facebook:before {
+	content: "\e600";
+}
+.icon-twitter:before {
+	content: "\e601";
+}

@@ -1,0 +1,49 @@
+@import "abstract-typography";
+$debug-grid: false !default;
+
+@mixin grid-background {
+  @if $debug-grid == true {
+    @include background-grid;
+  }
+}
+%vertical-spacing{
+  @include rem(padding-top, $vert-spacing-unit / 3);
+  @include rem(padding-bottom, $vert-spacing-unit / 3);
+  @include breakpoint($tab){
+    @include rem(padding-top, $vert-spacing-unit / 2);
+    @include rem(padding-bottom, $vert-spacing-unit / 2);
+  }
+  @include breakpoint($desk, $noquery){
+    @include rem(padding-top, $vert-spacing-unit);
+    @include rem(padding-bottom, 58px);
+  }
+}
+%add-padding{
+  @include rem(padding-left, 15px);
+  @include rem(padding-right, 15px);
+  @include breakpoint($tab){
+    @include rem(padding-left, 30px);
+    @include rem(padding-right, 30px);
+  }
+  @include breakpoint($desk, $noquery){
+    @include rem(padding-left, 16px);
+    @include rem(padding-right, 16px);
+  }
+}
+%section-vertical-padding{
+  @include rem(padding-bottom, $vert-spacing-unit / 3);
+  @include breakpoint($tab){
+    @include rem(padding-bottom, $vert-spacing-unit / 2);
+  }
+  @include breakpoint($desk, $noquery){
+    @include rem(padding-bottom, $vert-spacing-unit - 15px);
+  }
+}
+@mixin vertical-align{
+  position: relative;
+  top: 50%;
+  @include translateY(-50%);
+}
+%vertical-align{
+  @include vertical-align;
+}

@@ -1,0 +1,53 @@
+#mobile-navigation{
+  li{
+    border-bottom-color: #000;
+  }
+  >li>a{
+    white-space: nowrap;
+    
+  }
+  a{
+    font-size: 14px;
+    padding: 25px 15px;
+  }
+  .search-form{
+    position: relative;
+    padding: 20px 15px;
+    input{
+      @include appearance(none);
+      border: 0;
+      background-color: #FFF;
+      @include rem(padding, 15px);
+      width: 90%;
+      @include border-radius(0);
+      @include input-placeholder {
+        color: #bfbfbf;
+        font-style: italic;
+      }
+    }
+    button[type=submit]{
+      @include appearance(none);
+      border: 0;
+      position: absolute;
+      right: 8%;
+      top: 32px;
+      overflow: hidden;
+      height: 0;
+      width: 0;
+      padding-left: 25px;
+      padding-top: 25px;
+      background-color: transparent;
+      
+      &:after{
+        @extend %icon;
+        @extend %search;
+        position: absolute;
+        top:0;
+        left: 0;
+        font-size: 25px;
+        color: $lightGrey;
+      }
+      
+    }
+  }
+}
