@@ -13,7 +13,7 @@
  * To use the default WordPress version of jQuery, go to lib/config.php and
  * remove or comment out: add_theme_support('jquery-cdn');
  * ======================================================================== */
-
+Modernizr.addTest('svgasimg', document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Image', '1.1'));
 (function($) {
 
 // Use this variable to set up the common and page specific functions. If you 
@@ -23,6 +23,13 @@ var Roots = {
   common: {
     init: function() {
       FastClick.attach(document.body);
+      if(!Modernizr.svgasimg){
+        $('img').each(function() {
+          var img_src = $(this).attr('src');
+          var new_src = img_src.replace(/\.svg$/, '.png');
+          $(this).attr('src', new_src);
+        });
+      }
     }
   },
   // Home page
@@ -35,7 +42,7 @@ var Roots = {
         items:1,
         margin:0,
         stagePadding:0,
-        loop:true,
+        loop:false,
         //autoplay: true,
         responsiveRefreshRate:50,
         autoplayHoverPause: true,
