@@ -53,7 +53,7 @@ $(function(){
   
   
   $nav.multilevelpushmenu({
-    containersToPush: $('html'),
+    containersToPush: $('.l-page'),
     direction: 'rtl',
     fullCollapse: true,
     collapsed:true,
@@ -113,19 +113,6 @@ $(function(){
 
     //collapseMenu();
   });
-  /**
-  * Hide the menu when a click is detected off the menu
-  */
-  /*
-$('.csstransforms .l-page').click(function(e){
-    if($('html').hasClass(menuExpanded)){
-      e.preventDefault();
-      e.stopPropagation();
-      //collapseMenu();
-      return false;
-    }
-  });
-*/
   
   
   
@@ -136,8 +123,3 @@ $('.csstransforms .l-page').click(function(e){
   */
   $(window).resize($.throttle( 250, redrawMenu));
 });
-
-
-
-
-
