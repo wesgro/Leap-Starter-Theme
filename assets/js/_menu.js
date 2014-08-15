@@ -9,12 +9,9 @@ $(function(){
     return false;
   }
   function redrawMenu(){
-    if($('html').hasClass(menuExpanded)){
-      $('.l-page').velocity({
-        translateX: (getMenuWidth() * -1).toString()+'%',
-      });
-    }
+    collapseMenu();
     $nav.multilevelpushmenu( 'option', 'menuWidth', getMenuWidth().toString()+'%');
+    $nav.multilevelpushmenu( 'option', 'menuHeight', getMenuHeight().toString()+'px');
     $nav.multilevelpushmenu( 'redraw' );
     return false;
   }
@@ -25,6 +22,12 @@ $(function(){
       menuWidth = menuWidthSmall;
     }
     return menuWidth;
+  }
+  function getMenuHeight(){
+    var documentHeight = $(document).height();
+    var pageHeight = $('.l-page').height();
+    console.log( Math.max(documentHeight, pageHeight));
+    return Math.max(documentHeight, pageHeight);
   }
   function doAutoComplete(){
     var menuLinks = [];
@@ -50,48 +53,44 @@ $(function(){
   
   
   $nav.multilevelpushmenu({
+    containersToPush: $('html'),
     direction: 'rtl',
     fullCollapse: true,
     collapsed:true,
     menuWidth: menuWidth,
     menuHeight: '100%',
     swipe: 'touchscreen',
+    backItemIcon: 'icon-fontawesome-webfont',
+		groupIcon: 'icon-fontawesome-webfont-1',
     onMenuReady: function(){
       $('html').addClass(menuCollapsed);
-      $nav.find('.search-form').insertAfter(".levelHolderClass>h2");
+      $nav.find('.search-form').insertAfter(".mlpm_w > .levelHolderClass>h2");
       doAutoComplete();
-      $("#menu-main-menu").height($(window).height() - 100);
-      
+      redrawMenu();
     },
-    onExpandMenuStart: function() {
+    onExpandMenuStart: function(e) {
       console.log('Menu expanding...');
       $('html').removeClass(menuCollapsed);
       $('html').addClass(menuExpanding);
+      $nav.multilevelpushmenu( 'option', 'menuHeight', getMenuHeight().toString()+'px');
       $nav.multilevelpushmenu( 'redraw' );
-      $('.l-page').velocity({
-        translateX: [ (getMenuWidth() * -1).toString()+'%', 0 ],
-      });
     },
-    onExpandMenuEnd: function() {
+    onExpandMenuEnd: function(e) {
       console.log('Menu expanded!');
       $('html').removeClass(menuExpanding);
       $('html').addClass(menuExpanded);
-      $("#menu-main-menu").height($(window).height() - 100);
+      $(".mlpm_w").height($(window).height() - 100);
     },
-    onCollapseMenuStart: function() {
-      console.log('Menu collapsing...');
+    onCollapseMenuStart: function(e) {
+      /* console.log('Menu collapsing...'); */
       $('#mobile-navigation .search-field').autocomplete().hide();
       $('html').removeClass(menuExpanded);
       $('html').addClass(menuCollapsing);
-      $('.l-page').velocity({
-        translateX: [0, (getMenuWidth() * -1).toString()+'%' ],
-      });
     },
-    onCollapseMenuEnd: function() {
-      console.log('Menu collapsed!');
+    onCollapseMenuEnd: function(e) {
+      /* console.log('Menu collapsed!'); */
       $('html').removeClass(menuCollapsing);
       $('html').addClass(menuCollapsed);
-      
     },
     // Just for fun also changing the look of the menu
     wrapperClass: 'mlpm_w',
@@ -111,7 +110,7 @@ $(function(){
     }
   });
   $('.icon-close').click(function(){
-    console.log('close the menu');
+
     //collapseMenu();
   });
   /**
