@@ -28,11 +28,6 @@ function roots_scripts() {
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js'
     );
-    /**
-    * Register IE only style sheets
-    */
-    wp_register_style( 'leap-ie-only', get_stylesheet_directory_uri() . '/assets/css/main.no-query.css', array(), '' );
-
   } else {
     $get_assets = file_get_contents(get_template_directory() . '/assets/manifest.json');
     $assets     = json_decode($get_assets, true);
@@ -42,12 +37,11 @@ function roots_scripts() {
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
     );
-    /**
-    * Register IE only style sheets
-    */
-    wp_register_style( 'leap-ie-only', get_stylesheet_directory_uri() . '/assets/css/main.no-query.min.css', array(), '' );
   }
-
+  /**
+  * Register IE only style sheets
+  */
+  wp_register_style( 'leap-ie-only', get_stylesheet_directory_uri() . '/assets/css/main-no-query.min.css', array(), '' );
   wp_enqueue_style('roots_css', get_template_directory_uri() . $assets['css'], false, null);
   
   //ie stylesheets
