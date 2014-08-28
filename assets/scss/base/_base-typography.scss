@@ -80,6 +80,13 @@ hr{
   height: 1px;
   margin: 25px 0;
 }
+h1,h2,h3,h4,h5,h6,p,%p{
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern";
+  -webkit-font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern=1";
+}
 /**
  * $PARAGRAPHS
  */
@@ -89,11 +96,6 @@ p,
   -ms-word-break: normal;
   -ms-word-wrap: normal;
   word-break: normal;
-  -webkit-font-feature-settings: "liga", "dlig";
-  -moz-font-feature-settings: "liga=1, dlig=1";
-  -ms-font-feature-settings: "liga", "dlig";
-  -o-font-feature-settings: "liga", "dlig";
-  font-feature-settings: "liga", "dlig"; 
 }
 strong{
   font-weight: 700;
