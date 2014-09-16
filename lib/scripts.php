@@ -64,7 +64,6 @@ function roots_scripts() {
   }
 
   wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, false);
-  wp_enqueue_script('webfont-loader', '//ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js', array(), null, false);
   wp_enqueue_script('jquery');
   wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
   
@@ -87,7 +86,7 @@ function leap_add_webfont(){
   (function() {
     var wf = document.createElement('script');
     wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-              '://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js';
+              '://ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js';
     wf.type = 'text/javascript';
     wf.async = 'true';
     var s = document.getElementsByTagName('script')[0];
@@ -101,7 +100,7 @@ function roots_jquery_local_fallback($src, $handle = null) {
   static $add_jquery_fallback = false;
 
   if ($add_jquery_fallback) {
-    echo '<script>window.jQuery || document.write(\'<script src="' . get_template_directory_uri() . '/assets/vendor/jquery/dist/jquery.min.js?1.11.1"><\/script>\')</script>' . "\n";
+    //echo '<script>window.jQuery || document.write(\'<script src="' . get_template_directory_uri() . '/assets/vendor/jquery/dist/jquery.min.js?1.11.1"><\/script>\')</script>' . "\n";
     $add_jquery_fallback = false;
   }
 

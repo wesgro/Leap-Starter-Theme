@@ -95,6 +95,17 @@ function leap_login_url() {  return home_url(); }
 add_filter( 'login_headerurl', 'leap_login_url' );
 function leap_login_title() { return get_option( 'blogname' ); }
 add_filter( 'login_headertitle', 'leap_login_title' );
+/**
+* Add defer to all loaded scripts
+*/
+add_filter( 'clean_url', 'leap_add_defer_to_scripts', 11, 1 );
+function leap_add_defer_to_scripts($url){
+  if ( FALSE === strpos( $url, '.js' ) ){ // not our file
+    return $url;
+  }
+  // Must be a ', not "!
+  return "$url' defer='defer";
+}
 
 /*-----------------------------------------------------------
     Custom Walker Function that only shows an active class 
