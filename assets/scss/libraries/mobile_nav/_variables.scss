@@ -4,9 +4,9 @@ $mobile-nav-header-font-size: $mobile-nav-font-size * 1.5 !default;
 $mobile-nav-link-font-size: $mobile-nav-font-size * 1.5 !default;
 
 
-$mobile-nav-link-color: #fff !default;
+$mobile-nav-link-color: #999999 !default;
 
-$mobile-nav-position: fixed !default;
+$mobile-nav-position: absolute !default;
 $mobile-nav-position-left: auto !default;
 $mobile-nav-position-right: 0 !default;
 $mobile-nav-position-top:0 !default;
@@ -14,13 +14,13 @@ $mobile-nav-position-bottom: auto !default;
 
 
 
-$mobile-nav-open-position:fixed !default;
+$mobile-nav-open-position:absolute !default;
 $mobile-nav-open-position-right: 1.5em !default;
 $mobile-nav-open-position-top:1.5em !default;
 
-$nav-background-color: #333333;
-$nav-header-color:darken($mobile-nav-link-color, 15%) !default; 
-$nav-border-color:#000 !default;
+$nav-background-color: #FFF;
+$nav-header-color:$darkBlue !default; 
+$nav-border-color:#e1e5e7 !default;
 $nav-inactive-color:darken($nav-background-color, 5%) !default; 
 $nav-shadow-color: darken($nav-background-color, 20%) !default;
 

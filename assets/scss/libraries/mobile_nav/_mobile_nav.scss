@@ -10,16 +10,22 @@
 	z-index: 1000;
 
 }
+.mlpm_w{
+  > .levelHolderClass{
+    border-left: 1px solid #ccc;
+    right: -1px!important;
+    @include to(lp){
+      overflow-y: auto !important;
+      height: 90vh; 
+      .levelHolderClass{
+        overflow-y: auto !important;
+        height: 90vh;
+      }
+    }
+  }
+}
 .levelHolderClass ul {
-    height: 80vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
--webkit-transform: translate3d(0, 0, 0);
--moz-transform: translate3d(0, 0, 0);
--ms-transform: translate3d(0, 0, 0);
--o-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0);
+  -webkit-overflow-scrolling: touch;
 }
 
 #nav-open{
@@ -57,13 +63,36 @@ transform: translate3d(0, 0, 0);
 	font-size: $mobile-nav-font-size;
 	zoom: 1;
 	@include transition(background-color .125s ease-in);
+	form{
+  	background-color: darken($darkBlue, 3%);
+	}
 	h2{
+	  background-color: darken($darkBlue, 3%);
+	  color: #FFF;
 	  height: 30px;
-	  margin-bottom: 5px;
+	  padding-bottom: 15px;
+	  padding-top: 15px;
+	  height: 77px;
+	  margin: 0;
+	  border-bottom: 1px solid darken($darkBlue, 8%);
   	i{
     	font-size: 30px;
+    	margin-left: 15px;
+  	}
+  	span{
+    	@include inline-block;
+    	margin-right: 15px;
+    	margin-top: 10px;
+    	cursor: pointer;
   	}
 	}
+  .levelHolderClass{
+    h2{
+      padding-top: 32px;
+      padding-left: 15px;
+      text-align: left !important;
+    }
+  }
 }
 
 
@@ -73,7 +102,7 @@ transform: translate3d(0, 0, 0);
 	-moz-box-shadow: 5px 0 5px -5px $nav-shadow-color;
 	-webkit-box-shadow: 5px 0 5px -5px $nav-shadow-color;
 	box-shadow: 5px 0 5px -5px $nav-shadow-color;
-	filter: progid:DXImageTransform.Microsoft.Shadow(color=$nav-shadow-color,direction=90,strength=2);
+
 }
 
 .mlpm_w .rtl {
@@ -82,7 +111,7 @@ transform: translate3d(0, 0, 0);
 	-moz-box-shadow: 5px 0 5px 5px $nav-shadow-color;
 	-webkit-box-shadow: 5px 0 5px 5px $nav-shadow-color;
 	box-shadow: 5px 0 5px 5px $nav-shadow-color;
-	filter: progid:DXImageTransform.Microsoft.Shadow(color=$nav-shadow-color,direction=270,strength=2);
+
 }
 
 .mlpm_w .mlpm_inactive {
@@ -107,7 +136,6 @@ transform: translate3d(0, 0, 0);
 .mlpm_w li {
 	cursor: pointer;
 	border-bottom: 1px solid $nav-border-color;
-	padding: $mobile-nav-spacing;
 	text-align: left !important;
 }
 
@@ -115,8 +143,9 @@ transform: translate3d(0, 0, 0);
 	border-top: 1px solid $nav-border-color;
 }
 
-.mlpm_w li:hover {
+.mlpm_w li a:hover {
 	background-color: $nav-header-color;
+	color: #FFF;
 }
 
 .mlpm_w a {
@@ -135,7 +164,6 @@ transform: translate3d(0, 0, 0);
 }
 
 .mlpm_w a:hover {
-	color: #ffe;
 }
 
 .mlpm_w .backItemClass {
@@ -143,6 +171,11 @@ transform: translate3d(0, 0, 0);
 	padding: $mobile-nav-spacing;
 	background: $nav-background-color;
 	border-top: 1px solid $nav-shadow-color;
+	a{
+  	&:hover{
+    	color: #FFF;
+  	}
+	}
 }
 
 .mlpm_w .floatRight {

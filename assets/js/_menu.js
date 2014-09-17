@@ -1,11 +1,24 @@
 $(function(){
+  $(document).on('click', function(e){
+      if(!$(e.target).is('body')){
+        if($(e.target).closest('.mlpm_w').length === 0 && !$(e.target).hasClass('menu-toggle')){
+          $nav.multilevelpushmenu( 'collapse' );   
+          //$('html').removeClass('open-menu');
+        }
+      }
+
+  });
+
+
   function collapseMenu(){
     $('#mobile-navigation .search-field').autocomplete().hide();
     $nav.multilevelpushmenu( 'collapse' );
+    //$('html').removeClass('open-menu');
     return false;
   }
   function expandMenu(){
-     $nav.multilevelpushmenu( 'expand' );
+    $nav.multilevelpushmenu( 'expand' );
+    //$('html').addClass('open-menu');
     return false;
   }
   function redrawMenu(){
@@ -26,13 +39,14 @@ $(function(){
   function getMenuHeight(){
     var documentHeight = $(document).height();
     var pageHeight = $('.l-page').height();
-    console.log( Math.max(documentHeight, pageHeight));
     return Math.max(documentHeight, pageHeight);
   }
   function doAutoComplete(){
     var menuLinks = [];
     $('#mobile-navigation li a').each(function(i, e){
-      menuLinks.push({value: $(this).text(), data: $(this).attr('href') });
+      if($(this).attr('href') !== '#'){
+        menuLinks.push({value: $(this).text(), data: $(this).attr('href') });
+      }
     });
     $('#mobile-navigation .search-field').autocomplete({
       lookup: menuLinks,
@@ -65,6 +79,9 @@ $(function(){
     onMenuReady: function(){
       $('html').addClass(menuCollapsed);
       $nav.find('.search-form').insertAfter(".mlpm_w > .levelHolderClass>h2");
+      $(".levelHolderClass .close-menu").on('click', function(){
+        collapseMenu();
+      });
       doAutoComplete();
       redrawMenu();
     },
@@ -109,10 +126,27 @@ $(function(){
       collapseMenu();
     }
   });
-  $('.icon-close').click(function(){
-
-    //collapseMenu();
+  $('.mlpm_w .icon-menu').click(function(){
+    $('html').removeClass('open-menu');
+/*
+    if($(this).closest('.velocity-animating').length < 1 || $(this).closest('.velocity-animating').length < 1){
+     $('html').removeClass('open-menu'); 
+    }
+*/
   });
+  /**
+  * Hide the menu when a click is detected off the menu
+  */
+  /*
+$('.csstransforms .l-page').click(function(e){
+    if($('html').hasClass(menuExpanded)){
+      e.preventDefault();
+      e.stopPropagation();
+      //collapseMenu();
+      return false;
+    }
+  });
+*/
   
   
   
@@ -123,3 +157,8 @@ $(function(){
   */
   $(window).resize($.throttle( 250, redrawMenu));
 });
+
+
+
+
+
