@@ -1,0 +1,40 @@
+/**
+ Comment out depending on the menu type for the project
+**/
+
+
+
+//MENU
+//"Modern" menu type
+@include modernMenu();
+
+//"Standard" menu type
+//@include classicMenu(); 
+
+
+
+
+
+//TRANSITIONS
+@include scrollIntoView(); 
+
+
+
+
+
+//BLOG
+
+//Masonry Blog Type depandancies 
+// SCRIPTS
+// _blog-grid.js
+// _loading.js
+// imagesloaded.js
+// isotope.js
+// throttle-debounce.jquery.js
+// Needs Proper content-blog.php
+
+//@include masonryBlog();
+
+
+//Stacekd Text Only Blog Type
+@include textOnlyBlog();

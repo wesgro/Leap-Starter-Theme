@@ -1,0 +1,24 @@
+@mixin scrollIntoView(){
+  .no-touch.csstransitions{
+     .scroll-into-view{
+      opacity: 0;
+      @include translateX(60px);
+    	@include opacity(0);
+    	@include transition-property(all);
+    	@include transition-duration(1s);
+    	@include transition-timing-function(easeOutCubic); 
+    	&.left{
+        @include translateX(-60px);
+    	}
+      &.fadeUp{
+        @include translateX(0px);    
+        @include translateY(60px);    
+      }
+    	&.visible{
+    		@include translateY(0px);
+    		@include translateX(0px);
+    		@include opacity(1);
+    	}		
+    }
+  }  
+}
