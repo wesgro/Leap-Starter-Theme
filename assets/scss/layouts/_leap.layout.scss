@@ -1,3 +1,4 @@
+@import "leap.partials";
 
 @include sgs-change(debug, true);
 .cf{
@@ -50,12 +51,3 @@ $slicer-breakpoint-names:'pp'        'lp'        'pt'        'lt'        'd'    
     position: relative;
   }
 }
-
-/**
-* Comment out depending on the menu type for the project
-*/
-//"Modern" menu type
-@include modernMenu();
-
-//"Standard" menu type
-//@include classicMenu();

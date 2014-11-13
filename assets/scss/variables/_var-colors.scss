@@ -2,17 +2,26 @@ $black: #000000;
 $lightGrey:#cccccc;
 $darkGrey:#999999;
 
-$red:#cc0000;
-
-$lightBlue: #d1f0ff;
-$blue: #66ccff;
-$darkBlue:#336699;
-
-$green: #70ed00;
-$darkGreen: darken($green, 20%);
-
-$bodyCopy: #060a19;
+$darkGrey:#666;
+$greyedout:#b4b4b4;
+$grey:#787878;
+$white: #fff;
+$black: #000;
 
 $pink: #ed008c;
+$lightOrange:#de7c00;
+$orange:#ff5400;
+$red:#da291c; 
+$green: #64a70b;
+$darkGreen: #404d2d;
+$blue:#6ccff6;
+$brightBlue:#3399cc;
+$darkBlue:#19aae3;
+$purple:#9595d2;
+$yellow:#eaaa00;
 
-$yellow:#fff620;
+
+$brandColor:$orange;
+$hoverColor:$darkGreen; 
+$bodyCopy: $grey;
+$borderColor:$lightGrey;
